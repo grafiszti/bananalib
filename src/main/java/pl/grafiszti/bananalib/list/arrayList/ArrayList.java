@@ -39,6 +39,10 @@ public class ArrayList<E> implements List<E> {
         return false;
     }
 
+    private void rewriteElementsFromIndex(int index){
+
+    }
+
     @Override
     public boolean remove(E element) {
         return false;

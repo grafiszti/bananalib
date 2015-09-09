@@ -3,6 +3,8 @@ package pl.grafiszti.bananalib.list.arrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -29,7 +31,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testAddingAndRemovingOneElement() {
+    public void testAddingAndRemovingOneElementOnEmptyList() {
         Integer element = new Integer(2);
         arrayList.add(element);
         arrayList.removeFirst(element);
@@ -42,6 +44,37 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testSizeList() {
+    public void testAddingAndRemovingOneElementOnNotEmptyList() {
+        addRandomElementsToList();
+        Integer element = new Integer(10000000);
+        arrayList.add(element);
+        int arraySizeBeforeRemove = arrayList.size();
+        arrayList.removeFirst(element);
+        assertEquals(arraySizeBeforeRemove - 1, arrayList.size());
+    }
+
+    private void addRandomElementsToList() {
+        for (int i = 0; i < new Random().nextInt(100) + 3; i++) {
+            arrayList.add(new Integer(new Random().nextInt(1000)));
+        }
+    }
+
+    @Test
+    public void testIsEmpty() {
+        assertEquals(true, arrayList.isEmpty());
+        arrayList.add(new Integer(1));
+        assertEquals(false, arrayList.isEmpty());
+    }
+
+    @Test
+    public void testRemoveRepeatedElementsOnEmptyList() {
+        Integer element = new Integer(1);
+        for(int i = 0; i < 100; i++){
+            arrayList.add(element);
+        }
+
+        assertEquals(true, arrayList.remove(element));
+        assertEquals(0, arrayList.size());
+        assertEquals(true, arrayList.isEmpty());
     }
 }
