@@ -2,37 +2,45 @@ package pl.grafiszti.bananalib.list.arrayList;
 
 import pl.grafiszti.bananalib.list.List;
 
-public class ArrayList implements List {
+public class ArrayList<E> implements List<E> {
     private static final int INIT_ARRAY_SIZE = 10;
     private static final int INIT_INDEX_VALUE = 0;
     private static final byte ARRAY_LIST_SIZE_INCREASE_FACTOR = 2;
     private static final int NOT_FOUND_VALUE = -1;
-    private Object[] data;
+    private E[] data;
     private int index;
 
     public ArrayList() {
-        data = new Object[INIT_ARRAY_SIZE];
+        data = (E[]) new Object[INIT_ARRAY_SIZE];
         index = INIT_INDEX_VALUE;
     }
 
     @Override
-    public void add(Object element) {
+    public void add(E element) {
         if (data.length == index) {
             Object[] dataCopy = data;
-            data = new Object[index * ARRAY_LIST_SIZE_INCREASE_FACTOR];
+            data = (E[]) new Object[index * ARRAY_LIST_SIZE_INCREASE_FACTOR];
             System.arraycopy(dataCopy, 0, data, 0, dataCopy.length);
         }
         data[index++] = element;
     }
 
     @Override
-    public boolean remove(Object element) {
+    public boolean removeFirst(E element) {
         for (int i = 0; i < data.length; i++) {
             if (data[i].equals(element)) {
-                data[i] = null;
+                for (int j = i; j < index; ) {
+                    data[j] = data[++j];
+                }
+                index--;
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean remove(E element) {
         return false;
     }
 
@@ -42,7 +50,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public boolean contains(Object element) {
+    public boolean contains(E element) {
         for (Object aData : data) {
             if (aData.equals(element)) {
                 return true;
@@ -52,13 +60,13 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         return index >= this.index ? null : data[index];
     }
 
     @Override
-    public int getIndex(Object element) {
-        for (int i = 0; i < data.length; i++) {
+    public int getIndex(E element) {
+        for (int i = 0; i < index; i++) {
             if (data[i].equals(element)) {
                 return i;
             }
@@ -69,5 +77,9 @@ public class ArrayList implements List {
     @Override
     public int size() {
         return index;
+    }
+
+    public E[] asArray() {
+        return data;
     }
 }
