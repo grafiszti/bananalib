@@ -15,7 +15,6 @@ public class ArrayList<E> implements List<E> {
         index = INIT_INDEX_VALUE;
     }
 
-    @Override
     public void add(E element) {
         if (data.length == index) {
             Object[] dataCopy = data;
@@ -25,9 +24,8 @@ public class ArrayList<E> implements List<E> {
         data[index++] = element;
     }
 
-    @Override
     public boolean removeFirst(E element) {
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < index; i++) {
             if (data[i].equals(element)) {
                 for (int j = i; j < index; ) {
                     data[j] = data[++j];
@@ -39,36 +37,39 @@ public class ArrayList<E> implements List<E> {
         return false;
     }
 
-    private void rewriteElementsFromIndex(int index){
-
-    }
-
-    @Override
     public boolean remove(E element) {
-        return false;
+        boolean isSomethingRemoved = false;
+        for (int i = 0; i < index;) {
+            if (data[i].equals(element)) {
+                for (int j = i; j < index; ) {
+                    data[j] = data[++j];
+                }
+                index--;
+                isSomethingRemoved = true;
+            } else {
+                i++;
+            }
+        }
+        return isSomethingRemoved;
     }
 
-    @Override
     public boolean isEmpty() {
         return index == 0;
     }
 
-    @Override
     public boolean contains(E element) {
-        for (Object aData : data) {
-            if (aData.equals(element)) {
+        for (E item : data) {
+            if (item != null && item.equals(element)) {
                 return true;
             }
         }
         return false;
     }
 
-    @Override
     public E get(int index) {
         return index >= this.index ? null : data[index];
     }
 
-    @Override
     public int getIndex(E element) {
         for (int i = 0; i < index; i++) {
             if (data[i].equals(element)) {
@@ -78,7 +79,6 @@ public class ArrayList<E> implements List<E> {
         return NOT_FOUND_VALUE;
     }
 
-    @Override
     public int size() {
         return index;
     }

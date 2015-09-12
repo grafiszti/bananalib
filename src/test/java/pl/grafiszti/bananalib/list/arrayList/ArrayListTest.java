@@ -31,6 +31,17 @@ public class ArrayListTest {
     }
 
     @Test
+    public void testContainElementOnEmptyList() {
+        Integer element = new Integer(1);
+
+        arrayList.add(element);
+        assertEquals(true, arrayList.contains(element));
+
+        arrayList.removeFirst(element);
+        assertEquals(false, arrayList.contains(element));
+    }
+
+    @Test
     public void testAddingAndRemovingOneElementOnEmptyList() {
         Integer element = new Integer(2);
         arrayList.add(element);
@@ -44,17 +55,25 @@ public class ArrayListTest {
     }
 
     @Test
+    public void testAdding100ElementsToList() {
+        addRandomElementsToList(100);
+        assertEquals(100, arrayList.size());
+    }
+
+    @Test
     public void testAddingAndRemovingOneElementOnNotEmptyList() {
-        addRandomElementsToList();
+        addRandomElementsToList(100);
         Integer element = new Integer(10000000);
+
         arrayList.add(element);
         int arraySizeBeforeRemove = arrayList.size();
+
         arrayList.removeFirst(element);
         assertEquals(arraySizeBeforeRemove - 1, arrayList.size());
     }
 
-    private void addRandomElementsToList() {
-        for (int i = 0; i < new Random().nextInt(100) + 3; i++) {
+    private void addRandomElementsToList(int n) {
+        for (int i = 0; i < n; i++) {
             arrayList.add(new Integer(new Random().nextInt(1000)));
         }
     }
@@ -69,12 +88,31 @@ public class ArrayListTest {
     @Test
     public void testRemoveRepeatedElementsOnEmptyList() {
         Integer element = new Integer(1);
-        for(int i = 0; i < 100; i++){
-            arrayList.add(element);
-        }
+        addRepeatedElementsToList(100, element);
 
         assertEquals(true, arrayList.remove(element));
         assertEquals(0, arrayList.size());
         assertEquals(true, arrayList.isEmpty());
+    }
+
+    @Test
+    public void testRemoveRepeatedElementsOnNotEmptyList() {
+        int numberOfElementsBeforeRepeated = 100;
+        addRandomElementsToList(numberOfElementsBeforeRepeated);
+
+        Integer element = new Integer(1);
+        addRepeatedElementsToList(100, element);
+
+        int numberOfElementsAfterRepeated = 100;
+        addRandomElementsToList(numberOfElementsAfterRepeated);
+
+        assertEquals(true, arrayList.remove(element));
+        assertEquals(numberOfElementsBeforeRepeated + numberOfElementsAfterRepeated, arrayList.size());
+    }
+
+    private void addRepeatedElementsToList(int n, Object element){
+        for (int i = 0; i < n; i++) {
+            arrayList.add(element);
+        }
     }
 }
