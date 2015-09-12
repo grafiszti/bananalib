@@ -24,33 +24,29 @@ public class ArrayList<E> implements List<E> {
         data[index++] = element;
     }
 
-    public boolean removeFirst(E element) {
+    public void removeFirst(E element) {
         for (int i = 0; i < index; i++) {
             if (data[i].equals(element)) {
                 for (int j = i; j < index; ) {
                     data[j] = data[++j];
                 }
                 index--;
-                return true;
+                return;
             }
         }
-        return false;
     }
 
-    public boolean remove(E element) {
-        boolean isSomethingRemoved = false;
-        for (int i = 0; i < index;) {
+    public void remove(E element) {
+        for (int i = 0; i < index; ) {
             if (data[i].equals(element)) {
                 for (int j = i; j < index; ) {
                     data[j] = data[++j];
                 }
                 index--;
-                isSomethingRemoved = true;
             } else {
                 i++;
             }
         }
-        return isSomethingRemoved;
     }
 
     public boolean isEmpty() {

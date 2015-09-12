@@ -94,7 +94,8 @@ public class ArrayListTest {
         Integer element = new Integer(TEST_INT);
         addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, element);
 
-        assertEquals(true, arrayList.remove(element));
+        arrayList.remove(element);
+
         assertEquals(0, arrayList.size());
         assertEquals(true, arrayList.isEmpty());
     }
@@ -110,7 +111,8 @@ public class ArrayListTest {
         int numberOfElementsAfterRepeated = TEST_OBJECTS_QUANTITY;
         addRandomElementsToList(numberOfElementsAfterRepeated);
 
-        assertEquals(true, arrayList.remove(element));
+        arrayList.remove(element);
+        
         assertEquals(numberOfElementsBeforeRepeated + numberOfElementsAfterRepeated, arrayList.size());
     }
 
