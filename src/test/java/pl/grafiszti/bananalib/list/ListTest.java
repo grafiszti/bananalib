@@ -24,4 +24,10 @@ public interface ListTest {
     void testRemoveRepeatedElementsOnEmptyList();
 
     void testRemoveRepeatedElementsOnNotEmptyList();
+
+    void testSize();
+
+    void testGetIndexOfElementOnEmptyList();
+
+    void testGetIndexOfElementOnNotEmptyList();
 }

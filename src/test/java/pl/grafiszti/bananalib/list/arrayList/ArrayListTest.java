@@ -129,6 +129,29 @@ public class ArrayListTest implements ListTest {
         assertEquals(numberOfElementsBeforeRepeated + numberOfElementsAfterRepeated, arrayList.size());
     }
 
+    @Test
+    public void testSize(){
+        int numberOfElements = 123456;
+        addRandomElementsToList(numberOfElements);
+        assertEquals(numberOfElements, arrayList.size());
+    }
+
+    @Test
+    public void testGetIndexOfElementOnEmptyList(){
+        Integer element = new Integer(TEST_INT);
+        arrayList.add(element);
+        assertEquals(0, arrayList.getIndex(element));
+    }
+
+    @Test
+    public void testGetIndexOfElementOnNotEmptyList(){
+        Integer element = new Integer(TEST_INT);
+        addRandomElementsToList(TEST_OBJECTS_QUANTITY);
+        arrayList.add(element);
+        addRandomElementsToList(TEST_OBJECTS_QUANTITY);
+        assertEquals(TEST_OBJECTS_QUANTITY, arrayList.getIndex(element));
+    }
+
     private void addRandomElementsToList(int n) {
         for (int i = 0; i < n; i++) {
             arrayList.add(new Integer(new Random().nextInt(MAX_RANDOM_NUMBER_TO_TEST)));
