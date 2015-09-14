@@ -10,20 +10,27 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class ArrayListTest implements ListTest {
-    ArrayList arrayList;
+
+    private ArrayList arrayList;
+
     private static final int MAX_RANDOM_NUMBER_TO_TEST = 1000;
     private static final int TEST_INT = 2 * MAX_RANDOM_NUMBER_TO_TEST;
     private static final String TEST_STRING = "ASD";
     private static final int TEST_OBJECTS_QUANTITY = 100;
 
+    private Integer testObjectInteger;
+    private Boolean testObjectBoolean;
+
     @Before
     public void init() {
         arrayList = new ArrayList();
+        testObjectInteger = new Integer(TEST_INT);
+        testObjectBoolean = new Boolean(true);
     }
 
     @Test
     public void testAddingIntegerElement() {
-        arrayList.add(new Integer(TEST_INT));
+        arrayList.add(testObjectInteger);
         assertEquals(1, arrayList.size());
         assertEquals(true, arrayList.get(0) instanceof Integer);
     }
@@ -44,37 +51,32 @@ public class ArrayListTest implements ListTest {
     @Test
     public void testAddHugeAmountOfElements() {
         for (int i = 0; i < 1000000; i++) {
-            arrayList.add(new Boolean(true));
+            arrayList.add(testObjectBoolean);
         }
         assertEquals(1000000, arrayList.size());
     }
 
     @Test
     public void testContainElementOnEmptyList() {
-        Integer element = new Integer(TEST_INT);
+        arrayList.add(testObjectInteger);
+        assertEquals(true, arrayList.contains(testObjectInteger));
 
-        arrayList.add(element);
-        assertEquals(true, arrayList.contains(element));
-
-        arrayList.removeFirst(element);
-        assertEquals(false, arrayList.contains(element));
+        arrayList.removeFirst(testObjectInteger);
+        assertEquals(false, arrayList.contains(testObjectInteger));
     }
 
     public void testContainElementOnNotEmptyList() {
-        Integer element = new Integer(TEST_INT);
-
         addRandomElementsToList(TEST_OBJECTS_QUANTITY);
-        arrayList.add(element);
+        arrayList.add(testObjectInteger);
         addRandomElementsToList(TEST_OBJECTS_QUANTITY);
 
-        assertEquals(true, arrayList.contains(element));
+        assertEquals(true, arrayList.contains(testObjectInteger));
     }
 
     @Test
     public void testAddingAndRemovingOneElementOnEmptyList() {
-        Integer element = new Integer(TEST_INT);
-        arrayList.add(element);
-        arrayList.removeFirst(element);
+        arrayList.add(testObjectInteger);
+        arrayList.removeFirst(testObjectInteger);
 
         for (int i = 0; i < arrayList.asArray().length; i++) {
             assertNull(arrayList.asArray()[i]);
@@ -86,28 +88,26 @@ public class ArrayListTest implements ListTest {
     @Test
     public void testAddingAndRemovingOneElementOnNotEmptyList() {
         addRandomElementsToList(TEST_OBJECTS_QUANTITY);
-        Integer element = new Integer(TEST_INT);
 
-        arrayList.add(element);
+        arrayList.add(testObjectInteger);
         int arraySizeBeforeRemove = arrayList.size();
 
-        arrayList.removeFirst(element);
+        arrayList.removeFirst(testObjectInteger);
         assertEquals(arraySizeBeforeRemove - 1, arrayList.size());
     }
 
     @Test
     public void testIsEmpty() {
         assertEquals(true, arrayList.isEmpty());
-        arrayList.add(new Integer(TEST_INT));
+        arrayList.add(testObjectInteger);
         assertEquals(false, arrayList.isEmpty());
     }
 
     @Test
     public void testRemoveRepeatedElementsOnEmptyList() {
-        Integer element = new Integer(TEST_INT);
-        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, element);
+        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, testObjectInteger);
 
-        arrayList.remove(element);
+        arrayList.remove(testObjectInteger);
 
         assertEquals(0, arrayList.size());
         assertEquals(true, arrayList.isEmpty());
@@ -118,13 +118,12 @@ public class ArrayListTest implements ListTest {
         int numberOfElementsBeforeRepeated = TEST_OBJECTS_QUANTITY;
         addRandomElementsToList(numberOfElementsBeforeRepeated);
 
-        Integer element = new Integer(TEST_INT);
-        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, element);
+        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, testObjectInteger);
 
         int numberOfElementsAfterRepeated = TEST_OBJECTS_QUANTITY;
         addRandomElementsToList(numberOfElementsAfterRepeated);
 
-        arrayList.remove(element);
+        arrayList.remove(testObjectInteger);
 
         assertEquals(numberOfElementsBeforeRepeated + numberOfElementsAfterRepeated, arrayList.size());
     }
@@ -138,18 +137,17 @@ public class ArrayListTest implements ListTest {
 
     @Test
     public void testGetIndexOfElementOnEmptyList(){
-        Integer element = new Integer(TEST_INT);
-        arrayList.add(element);
-        assertEquals(0, arrayList.getIndex(element));
+        arrayList.add(testObjectInteger);
+        assertEquals(0, arrayList.getIndex(testObjectInteger));
     }
 
     @Test
     public void testGetIndexOfElementOnNotEmptyList(){
-        Integer element = new Integer(TEST_INT);
         addRandomElementsToList(TEST_OBJECTS_QUANTITY);
-        arrayList.add(element);
+        arrayList.add(testObjectInteger);
         addRandomElementsToList(TEST_OBJECTS_QUANTITY);
-        assertEquals(TEST_OBJECTS_QUANTITY, arrayList.getIndex(element));
+
+        assertEquals(TEST_OBJECTS_QUANTITY, arrayList.getIndex(testObjectInteger));
     }
 
     private void addRandomElementsToList(int n) {
@@ -160,7 +158,7 @@ public class ArrayListTest implements ListTest {
 
     private void addRepeatedElementsToList(int n, Object element) {
         for (int i = 0; i < n; i++) {
-            arrayList.add(element);
+            //arrayList.add(element);
         }
     }
 }
