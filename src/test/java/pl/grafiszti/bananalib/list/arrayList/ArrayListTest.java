@@ -81,12 +81,8 @@ public class ArrayListTest implements ListTest {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(testObjectInteger);
         arrayList.removeFirst(testObjectInteger);
-
-        for (int i = 0; i < arrayList.asArray().length; i++) {
-            assertNull(arrayList.asArray()[i]);
-        }
-
         assertEquals(0, arrayList.size());
+        assertEquals(true, arrayList.isEmpty());
     }
 
     @Test
