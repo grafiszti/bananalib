@@ -1,13 +1,10 @@
-package pl.grafiszti.bananalib.list.arrayList;
+package pl.grafiszti.bananalib.list.linkedList;
 
 import pl.grafiszti.bananalib.list.List;
 
-/**
- * Created by fisz on 15.09.15.
- */
 public class LinkedList <E> implements List<E> {
     public void add(E element) {
-        
+
     }
 
     public void removeFirst(E element) {

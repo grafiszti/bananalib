@@ -1,8 +1,6 @@
 package pl.grafiszti.bananalib.list;
 
 public interface ListTest {
-    void init();
-
     void testAddingIntegerElement();
 
     void testAddingStringElement();

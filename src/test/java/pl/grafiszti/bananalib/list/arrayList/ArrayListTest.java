@@ -7,7 +7,6 @@ import pl.grafiszti.bananalib.list.ListTest;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class ArrayListTest implements ListTest {
     private static final int MAX_RANDOM_NUMBER_TO_TEST = 1000;
