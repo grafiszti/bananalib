@@ -1,6 +1,5 @@
 package pl.grafiszti.bananalib.list.arrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 import pl.grafiszti.bananalib.list.ListTest;
 
@@ -8,51 +7,57 @@ import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
-public class ArrayListTest implements ListTest {
-    private static final int MAX_RANDOM_NUMBER_TO_TEST = 1000;
-    private static final int TEST_INT = 2 * MAX_RANDOM_NUMBER_TO_TEST;
-    private static final String TEST_STRING = "ASD";
-    private static final int TEST_OBJECTS_QUANTITY = 100;
-
-    private Integer testObjectInteger;
-    private Boolean testObjectBoolean;
-
-    @Before
-    public void init() {
-        testObjectInteger = new Integer(TEST_INT);
-        testObjectBoolean = new Boolean(true);
-    }
-
+public class ArrayListTest extends ListTest {
     @Test
-    public void testAddingIntegerElement() {
+    public void testAddingIntegerElementToEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(testObjectInteger);
         assertEquals(1, arrayList.size());
         assertEquals(true, arrayList.get(0) instanceof Integer);
     }
 
+    @Override
+    public void testAddingIntegerElementToNotEmptyList() {
+
+    }
+
     @Test
-    public void testAddingStringElement() {
+    public void testAddingStringElementToEmptyList() {
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add(TEST_STRING);
         assertEquals(1, arrayList.size());
         assertEquals(true, arrayList.get(0) instanceof String);
     }
 
+    @Override
+    public void testAddingStringElementToNotEmptyList() {
+
+    }
+
     @Test
-    public void testAdding100ElementsToList() {
+    public void testAdding100ElementsToEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
         assertEquals(TEST_OBJECTS_QUANTITY, arrayList.size());
     }
 
+    @Override
+    public void testAdding100ElementsToNotEmptyList() {
+
+    }
+
     @Test
-    public void testAddHugeAmountOfElements() {
+    public void testAddHugeAmountOfElementsToEmptyList() {
         ArrayList<Boolean> arrayList = new ArrayList<Boolean>();
         for (int i = 0; i < 1000000; i++) {
             arrayList.add(testObjectBoolean);
         }
         assertEquals(1000000, arrayList.size());
+    }
+
+    @Override
+    public void testAddHugeAmountOfElementsToNotEmptyList() {
+
     }
 
     @Test
@@ -132,7 +137,7 @@ public class ArrayListTest implements ListTest {
     }
 
     @Test
-    public void testSize(){
+    public void testSize() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         int numberOfElements = 123456;
         addRandomElementsToList(numberOfElements, arrayList);
@@ -140,14 +145,14 @@ public class ArrayListTest implements ListTest {
     }
 
     @Test
-    public void testGetIndexOfElementOnEmptyList(){
+    public void testGetIndexOfElementOnEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(testObjectInteger);
         assertEquals(0, arrayList.getIndex(testObjectInteger));
     }
 
     @Test
-    public void testGetIndexOfElementOnNotEmptyList(){
+    public void testGetIndexOfElementOnNotEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
         arrayList.add(testObjectInteger);
@@ -163,7 +168,7 @@ public class ArrayListTest implements ListTest {
     }
 
     private void addRepeatedElementsToList(int n, Integer element, ArrayList<Integer> arrayList) {
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             arrayList.add(element);
         }
     }

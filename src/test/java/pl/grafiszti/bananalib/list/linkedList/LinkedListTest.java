@@ -5,28 +5,51 @@ import pl.grafiszti.bananalib.list.ListTest;
 
 import static org.junit.Assert.assertEquals;
 
-public class LinkedListTest implements ListTest {
+public class LinkedListTest extends ListTest {
 
     @Test
-    public void testAddingIntegerElement() {
+    public void testAddingIntegerElementToEmptyList() {
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
-        linkedList.add(new Integer(1));
+        linkedList.add(testObjectInteger);
         assertEquals(1, linkedList.size());
         assertEquals(false, linkedList.isEmpty());
     }
 
-    @Test
-    public void testAddingStringElement() {
+    @Override
+    public void testAddingIntegerElementToNotEmptyList() {
 
     }
 
     @Test
-    public void testAdding100ElementsToList() {
+    public void testAddingStringElementToEmptyList() {
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add(TEST_STRING);
+        assertEquals(1, linkedList.size());
+        assertEquals(false, linkedList.isEmpty());
+    }
+
+    @Override
+    public void testAddingStringElementToNotEmptyList() {
 
     }
 
     @Test
-    public void testAddHugeAmountOfElements() {
+    public void testAdding100ElementsToEmptyList() {
+
+    }
+
+    @Override
+    public void testAdding100ElementsToNotEmptyList() {
+
+    }
+
+    @Test
+    public void testAddHugeAmountOfElementsToEmptyList() {
+
+    }
+
+    @Override
+    public void testAddHugeAmountOfElementsToNotEmptyList() {
 
     }
 

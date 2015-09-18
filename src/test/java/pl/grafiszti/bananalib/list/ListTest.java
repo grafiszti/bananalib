@@ -1,31 +1,54 @@
 package pl.grafiszti.bananalib.list;
 
-public interface ListTest {
-    void testAddingIntegerElement();
+import org.junit.Before;
 
-    void testAddingStringElement();
+public abstract class ListTest {
+    protected static final int MAX_RANDOM_NUMBER_TO_TEST = 1000;
+    protected static final int TEST_INT = 2 * MAX_RANDOM_NUMBER_TO_TEST;
+    protected static final String TEST_STRING = "ASD";
+    protected static final int TEST_OBJECTS_QUANTITY = 100;
 
-    void testAdding100ElementsToList();
+    protected Integer testObjectInteger;
+    protected Boolean testObjectBoolean;
 
-    void testAddHugeAmountOfElements();
+    @Before
+    public void init() {
+        testObjectInteger = new Integer(TEST_INT);
+        testObjectBoolean = new Boolean(true);
+    }
+    public abstract void testAddingIntegerElementToEmptyList();
 
-    void testContainElementOnEmptyList();
+    public abstract void testAddingIntegerElementToNotEmptyList();
 
-    void testContainElementOnNotEmptyList();
+    public abstract void testAddingStringElementToEmptyList();
 
-    void testAddingAndRemovingOneElementOnEmptyList();
+    public abstract void testAddingStringElementToNotEmptyList();
 
-    void testAddingAndRemovingOneElementOnNotEmptyList();
+    public abstract void testAdding100ElementsToEmptyList();
 
-    void testIsEmpty();
+    public abstract void testAdding100ElementsToNotEmptyList();
 
-    void testRemoveRepeatedElementsOnEmptyList();
+    public abstract void testAddHugeAmountOfElementsToEmptyList();
 
-    void testRemoveRepeatedElementsOnNotEmptyList();
+    public abstract void testAddHugeAmountOfElementsToNotEmptyList();
 
-    void testSize();
+    public abstract void testContainElementOnEmptyList();
 
-    void testGetIndexOfElementOnEmptyList();
+    public abstract void testContainElementOnNotEmptyList();
 
-    void testGetIndexOfElementOnNotEmptyList();
+    public abstract void testAddingAndRemovingOneElementOnEmptyList();
+
+    public abstract void testAddingAndRemovingOneElementOnNotEmptyList();
+
+    public abstract void testIsEmpty();
+
+    public abstract void testRemoveRepeatedElementsOnEmptyList();
+
+    public abstract void testRemoveRepeatedElementsOnNotEmptyList();
+
+    public abstract void testSize();
+
+    public abstract void testGetIndexOfElementOnEmptyList();
+
+    public abstract void testGetIndexOfElementOnNotEmptyList();
 }
