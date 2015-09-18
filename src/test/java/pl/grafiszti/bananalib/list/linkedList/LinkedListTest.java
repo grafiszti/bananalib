@@ -2,14 +2,10 @@ package pl.grafiszti.bananalib.list.linkedList;
 
 import org.junit.Test;
 import pl.grafiszti.bananalib.list.ListTest;
-import pl.grafiszti.bananalib.list.linkedList.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 
 public class LinkedListTest implements ListTest {
-    public void init() {
-
-    }
 
     @Test
     public void testAddingIntegerElement() {

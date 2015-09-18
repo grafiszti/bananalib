@@ -2,9 +2,25 @@ package pl.grafiszti.bananalib.list.linkedList;
 
 import pl.grafiszti.bananalib.list.List;
 
-public class LinkedList <E> implements List<E> {
-    public void add(E element) {
+public class LinkedList<E> implements List<E> {
+    Node root = null;
 
+    public void add(E element) {
+        if (root == null) {
+            root = new Node(0, null, element, null);
+        } else {
+            Node lastNode = getLastNode(root);
+            Node newNode = new Node(lastNode.getId() + 1, lastNode, element, null);
+            lastNode.setNext(newNode);
+        }
+    }
+
+    private Node getLastNode(Node node) {
+        if (node.getNext() == null) {
+            return node;
+        } else {
+            return getLastNode(node.getNext());
+        }
     }
 
     public void removeFirst(E element) {
@@ -32,6 +48,6 @@ public class LinkedList <E> implements List<E> {
     }
 
     public int size() {
-        return 0;
+        return getLastNode(root).getId() + 1;
     }
 }
