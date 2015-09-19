@@ -15,7 +15,7 @@ public class LinkedListTest extends ListTest {
         assertEquals(false, linkedList.isEmpty());
     }
 
-    @Override
+    @Test
     public void testAddingIntegerElementToNotEmptyList() {
 
     }
@@ -28,7 +28,7 @@ public class LinkedListTest extends ListTest {
         assertEquals(false, linkedList.isEmpty());
     }
 
-    @Override
+    @Test
     public void testAddingStringElementToNotEmptyList() {
 
     }
@@ -38,18 +38,8 @@ public class LinkedListTest extends ListTest {
 
     }
 
-    @Override
-    public void testAdding100ElementsToNotEmptyList() {
-
-    }
-
     @Test
     public void testAddHugeAmountOfElementsToEmptyList() {
-
-    }
-
-    @Override
-    public void testAddHugeAmountOfElementsToNotEmptyList() {
 
     }
 

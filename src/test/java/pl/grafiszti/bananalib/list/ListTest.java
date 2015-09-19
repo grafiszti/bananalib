@@ -2,10 +2,13 @@ package pl.grafiszti.bananalib.list;
 
 import org.junit.Before;
 
+import java.util.Random;
+
 public abstract class ListTest {
     protected static final int MAX_RANDOM_NUMBER_TO_TEST = 1000;
+    protected static final int MAX_RANDOM_STRING_LENGTH_TO_TEST = 10;
     protected static final int TEST_INT = 2 * MAX_RANDOM_NUMBER_TO_TEST;
-    protected static final String TEST_STRING = "ASD";
+    protected static final String TEST_STRING = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
     protected static final int TEST_OBJECTS_QUANTITY = 100;
 
     protected Integer testObjectInteger;
@@ -15,6 +18,24 @@ public abstract class ListTest {
     public void init() {
         testObjectInteger = TEST_INT;
         testObjectBoolean = true;
+    }
+
+    protected void addRandomIntegerElementsToList(int n, List<Integer> list) {
+        for (int i = 0; i < n; i++) {
+            list.add(new Random().nextInt(MAX_RANDOM_NUMBER_TO_TEST));
+        }
+    }
+
+    protected void addRandomStringElementsToList(int n, List<String> list) {
+        for (int i = 0; i < n; i++) {
+            list.add(Integer.toString(new Random().nextInt(10 * MAX_RANDOM_STRING_LENGTH_TO_TEST)));
+        }
+    }
+
+    protected void addRepeatedElementsToList(int n, Integer element, List<Integer> list) {
+        for (int i = 0; i < n; i++) {
+            list.add(element);
+        }
     }
 
     public abstract void testAddingIntegerElementToEmptyList();
@@ -27,11 +48,7 @@ public abstract class ListTest {
 
     public abstract void testAdding100ElementsToEmptyList();
 
-    public abstract void testAdding100ElementsToNotEmptyList();
-
     public abstract void testAddHugeAmountOfElementsToEmptyList();
-
-    public abstract void testAddHugeAmountOfElementsToNotEmptyList();
 
     public abstract void testContainElementOnEmptyList();
 

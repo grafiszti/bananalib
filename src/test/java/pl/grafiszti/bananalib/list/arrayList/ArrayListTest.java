@@ -3,8 +3,6 @@ package pl.grafiszti.bananalib.list.arrayList;
 import org.junit.Test;
 import pl.grafiszti.bananalib.list.ListTest;
 
-import java.util.Random;
-
 import static org.junit.Assert.assertEquals;
 
 public class ArrayListTest extends ListTest {
@@ -16,9 +14,15 @@ public class ArrayListTest extends ListTest {
         assertEquals(true, arrayList.get(0) != null);
     }
 
-    @Override
+    @Test
     public void testAddingIntegerElementToNotEmptyList() {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
 
+        arrayList.add(testObjectInteger);
+
+        assertEquals(TEST_OBJECTS_QUANTITY + 1, arrayList.size());
+        assertEquals(true, arrayList.contains(testObjectInteger));
     }
 
     @Test
@@ -29,21 +33,22 @@ public class ArrayListTest extends ListTest {
         assertEquals(true, arrayList.get(0) != null);
     }
 
-    @Override
+    @Test
     public void testAddingStringElementToNotEmptyList() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        addRandomStringElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
 
+        arrayList.add(TEST_STRING);
+
+        assertEquals(TEST_OBJECTS_QUANTITY + 1, arrayList.size());
+        assertEquals(true, arrayList.contains(TEST_STRING));
     }
 
     @Test
     public void testAdding100ElementsToEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
         assertEquals(TEST_OBJECTS_QUANTITY, arrayList.size());
-    }
-
-    @Override
-    public void testAdding100ElementsToNotEmptyList() {
-
     }
 
     @Test
@@ -53,11 +58,6 @@ public class ArrayListTest extends ListTest {
             arrayList.add(testObjectBoolean);
         }
         assertEquals(1000000, arrayList.size());
-    }
-
-    @Override
-    public void testAddHugeAmountOfElementsToNotEmptyList() {
-
     }
 
     @Test
@@ -73,9 +73,9 @@ public class ArrayListTest extends ListTest {
     @Test
     public void testContainElementOnNotEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
         arrayList.add(testObjectInteger);
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
 
         assertEquals(true, arrayList.contains(testObjectInteger));
     }
@@ -92,7 +92,7 @@ public class ArrayListTest extends ListTest {
     @Test
     public void testAddingAndRemovingOneElementOnNotEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
 
         arrayList.add(testObjectInteger);
         int arraySizeBeforeRemove = arrayList.size();
@@ -124,12 +124,12 @@ public class ArrayListTest extends ListTest {
     public void testRemoveRepeatedElementsOnNotEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         int numberOfElementsBeforeRepeated = TEST_OBJECTS_QUANTITY;
-        addRandomElementsToList(numberOfElementsBeforeRepeated, arrayList);
+        addRandomIntegerElementsToList(numberOfElementsBeforeRepeated, arrayList);
 
         addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, testObjectInteger, arrayList);
 
         int numberOfElementsAfterRepeated = TEST_OBJECTS_QUANTITY;
-        addRandomElementsToList(numberOfElementsAfterRepeated, arrayList);
+        addRandomIntegerElementsToList(numberOfElementsAfterRepeated, arrayList);
 
         arrayList.remove(testObjectInteger);
 
@@ -140,7 +140,7 @@ public class ArrayListTest extends ListTest {
     public void testSize() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         int numberOfElements = 123456;
-        addRandomElementsToList(numberOfElements, arrayList);
+        addRandomIntegerElementsToList(numberOfElements, arrayList);
         assertEquals(numberOfElements, arrayList.size());
     }
 
@@ -154,22 +154,10 @@ public class ArrayListTest extends ListTest {
     @Test
     public void testGetIndexOfElementOnNotEmptyList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
         arrayList.add(testObjectInteger);
-        addRandomElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, arrayList);
 
         assertEquals(TEST_OBJECTS_QUANTITY, arrayList.getIndex(testObjectInteger));
-    }
-
-    private void addRandomElementsToList(int n, ArrayList<Integer> arrayList) {
-        for (int i = 0; i < n; i++) {
-            arrayList.add(new Random().nextInt(MAX_RANDOM_NUMBER_TO_TEST));
-        }
-    }
-
-    private void addRepeatedElementsToList(int n, Integer element, ArrayList<Integer> arrayList) {
-        for (int i = 0; i < n; i++) {
-            arrayList.add(element);
-        }
     }
 }
