@@ -43,6 +43,14 @@ public class LinkedList<E> implements List<E> {
     }
 
     public boolean contains(E element) {
+        Node currentNode = root;
+        while (currentNode != null) {
+            if (currentNode.getValue().equals(element)) {
+                return true;
+            } else {
+                currentNode = currentNode.getNext();
+            }
+        }
         return false;
     }
 

@@ -17,7 +17,12 @@ public class LinkedListTest extends ListTest {
 
     @Test
     public void testAddingIntegerElementToNotEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
 
+        linkedList.add(testObjectInteger);
+        assertEquals(TEST_OBJECTS_QUANTITY + 1, linkedList.size());
+        assertEquals(true, linkedList.contains(testObjectInteger));
     }
 
     @Test
