@@ -13,7 +13,7 @@ public class ArrayListTest extends ListTest {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(testObjectInteger);
         assertEquals(1, arrayList.size());
-        assertEquals(true, arrayList.get(0) instanceof Integer);
+        assertEquals(true, arrayList.get(0) != null);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ArrayListTest extends ListTest {
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add(TEST_STRING);
         assertEquals(1, arrayList.size());
-        assertEquals(true, arrayList.get(0) instanceof String);
+        assertEquals(true, arrayList.get(0) != null);
     }
 
     @Override

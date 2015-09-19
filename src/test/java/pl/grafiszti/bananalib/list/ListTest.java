@@ -13,9 +13,10 @@ public abstract class ListTest {
 
     @Before
     public void init() {
-        testObjectInteger = new Integer(TEST_INT);
-        testObjectBoolean = new Boolean(true);
+        testObjectInteger = TEST_INT;
+        testObjectBoolean = true;
     }
+
     public abstract void testAddingIntegerElementToEmptyList();
 
     public abstract void testAddingIntegerElementToNotEmptyList();

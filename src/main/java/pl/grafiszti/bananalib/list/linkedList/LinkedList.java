@@ -7,10 +7,10 @@ public class LinkedList<E> implements List<E> {
 
     public void add(E element) {
         if (root == null) {
-            root = new Node(0, null, element, null);
+            root = new Node<E>(0, null, element, null);
         } else {
             Node lastNode = getLastNode(root);
-            Node newNode = new Node(lastNode.getId() + 1, lastNode, element, null);
+            Node newNode = new Node<E>(lastNode.getId() + 1, lastNode, element, null);
             lastNode.setNext(newNode);
         }
     }
