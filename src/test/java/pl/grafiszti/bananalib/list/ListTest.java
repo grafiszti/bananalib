@@ -10,6 +10,7 @@ public abstract class ListTest {
     protected static final int TEST_INT = 2 * MAX_RANDOM_NUMBER_TO_TEST;
     protected static final String TEST_STRING = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
     protected static final int TEST_OBJECTS_QUANTITY = 100;
+    protected static final int HUGE_OBJECTS_QUANTITY = 1000000;
 
     protected Integer testObjectInteger;
     protected Boolean testObjectBoolean;

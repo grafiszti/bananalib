@@ -54,10 +54,10 @@ public class ArrayListTest extends ListTest {
     @Test
     public void testAddHugeAmountOfElementsToEmptyList() {
         ArrayList<Boolean> arrayList = new ArrayList<Boolean>();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < HUGE_OBJECTS_QUANTITY; i++) {
             arrayList.add(testObjectBoolean);
         }
-        assertEquals(1000000, arrayList.size());
+        assertEquals(HUGE_OBJECTS_QUANTITY, arrayList.size());
     }
 
     @Test

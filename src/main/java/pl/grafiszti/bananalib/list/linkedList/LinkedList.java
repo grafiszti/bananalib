@@ -4,21 +4,25 @@ import pl.grafiszti.bananalib.list.List;
 
 public class LinkedList<E> implements List<E> {
     Node root;
+    Node lastNode;
     int size;
 
     public LinkedList() {
-        Node root = null;
-        int size = 0;
+        root = null;
+        size = 0;
+        lastNode = root;
     }
 
     public void add(E element) {
+        Node newNode;
         if (root == null) {
-            root = new Node<E>(null, element, null);
+            newNode = new Node<E>(null, element, null);
+            root = newNode;
         } else {
-            Node lastNode = getLastNode();
-            Node newNode = new Node<E>(lastNode, element, null);
+            newNode = new Node<E>(lastNode, element, null);
             lastNode.setNext(newNode);
         }
+        lastNode = newNode;
         size++;
     }
 
@@ -31,7 +35,43 @@ public class LinkedList<E> implements List<E> {
     }
 
     public void removeFirst(E element) {
+        Node currentNode = root;
+        while (currentNode != null) {
+            if (currentNode.getValue().equals(element)) {
+                if (onlyOneElementOnList(currentNode)) {
+                    root = null;
+                    lastNode = null;
+                } else if (firstElementOnList(currentNode)) {
+                    currentNode.getNext().setPrev(null);
+                } else if (centerElementOnList(currentNode)) {
+                    currentNode.getPrev().setNext(currentNode.getNext());
+                    currentNode.getNext().setPrev(currentNode.getPrev());
+                } else if (lastElementOnList(currentNode)) {
+                    currentNode.getPrev().setNext(null);
+                    lastNode = currentNode.getPrev();
+                }
+                size--;
+                return;
+            } else {
+                currentNode = currentNode.getNext();
+            }
+        }
+    }
 
+    private boolean onlyOneElementOnList(Node node) {
+        return node.getPrev() == null && node.getNext() == null;
+    }
+
+    private boolean firstElementOnList(Node node) {
+        return node.getPrev() == null && node.getNext() != null;
+    }
+
+    private boolean centerElementOnList(Node node) {
+        return node.getPrev() != null && node.getNext() != null;
+    }
+
+    private boolean lastElementOnList(Node node) {
+        return node.getPrev() != null && node.getPrev() == null;
     }
 
     public void remove(E element) {
