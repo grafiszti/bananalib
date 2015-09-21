@@ -38,24 +38,28 @@ public class LinkedList<E> implements List<E> {
         Node currentNode = root;
         while (currentNode != null) {
             if (currentNode.getValue().equals(element)) {
-                if (onlyOneElementOnList(currentNode)) {
-                    root = null;
-                    lastNode = null;
-                } else if (firstElementOnList(currentNode)) {
-                    currentNode.getNext().setPrev(null);
-                } else if (centerElementOnList(currentNode)) {
-                    currentNode.getPrev().setNext(currentNode.getNext());
-                    currentNode.getNext().setPrev(currentNode.getPrev());
-                } else if (lastElementOnList(currentNode)) {
-                    currentNode.getPrev().setNext(null);
-                    lastNode = currentNode.getPrev();
-                }
-                size--;
+                removeNode(currentNode);
                 return;
             } else {
                 currentNode = currentNode.getNext();
             }
         }
+    }
+
+    private void removeNode(Node node) {
+        if (onlyOneElementOnList(node)) {
+            root = null;
+            lastNode = null;
+        } else if (firstElementOnList(node)) {
+            node.getNext().setPrev(null);
+        } else if (centerElementOnList(node)) {
+            node.getPrev().setNext(node.getNext());
+            node.getNext().setPrev(node.getPrev());
+        } else if (lastElementOnList(node)) {
+            node.getPrev().setNext(null);
+            lastNode = node.getPrev();
+        }
+        size--;
     }
 
     private boolean onlyOneElementOnList(Node node) {
@@ -75,11 +79,20 @@ public class LinkedList<E> implements List<E> {
     }
 
     public void remove(E element) {
-
+        Node currentNode = root;
+        while (currentNode != null) {
+            if (currentNode.getValue().equals(element)) {
+                Node nodeToRemove = currentNode;
+                currentNode = currentNode.getNext();
+                removeNode(nodeToRemove);
+            } else {
+                currentNode = currentNode.getNext();
+            }
+        }
     }
 
     public boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
     public boolean contains(E element) {
@@ -99,7 +112,17 @@ public class LinkedList<E> implements List<E> {
     }
 
     public int getIndex(E element) {
-        return 0;
+        Node currentNode = root;
+        int counter = 0;
+        while (currentNode != null) {
+            if (currentNode.getValue().equals(element)) {
+                return counter;
+            } else {
+                counter++;
+                currentNode = currentNode.getNext();
+            }
+        }
+        return -1;
     }
 
     public int size() {

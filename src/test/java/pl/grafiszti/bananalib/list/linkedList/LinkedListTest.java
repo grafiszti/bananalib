@@ -88,36 +88,83 @@ public class LinkedListTest extends ListTest {
 
     @Test
     public void testAddingAndRemovingOneElementOnNotEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
+        linkedList.add(TEST_INT);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
 
+        assertEquals(TEST_OBJECTS_QUANTITY * 2 + 1, linkedList.size());
+        assertTrue(linkedList.contains(TEST_INT));
+
+        linkedList.removeFirst(TEST_INT);
+        assertEquals(TEST_OBJECTS_QUANTITY * 2, linkedList.size());
+        assertFalse(linkedList.contains(TEST_INT));
     }
 
     @Test
     public void testIsEmpty() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        assertTrue(linkedList.isEmpty());
 
+        linkedList.add(TEST_INT);
+        assertFalse(linkedList.isEmpty());
+
+        linkedList.removeFirst(TEST_INT);
+        assertTrue(linkedList.isEmpty());
     }
 
     @Test
     public void testRemoveRepeatedElementsOnEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, TEST_INT, linkedList);
 
+        assertEquals(TEST_OBJECTS_QUANTITY, linkedList.size());
+        assertFalse(linkedList.isEmpty());
+
+        linkedList.remove(TEST_INT);
+        assertEquals(0, linkedList.size());
+        assertTrue(linkedList.isEmpty());
     }
 
     @Test
     public void testRemoveRepeatedElementsOnNotEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
+        addRepeatedElementsToList(TEST_OBJECTS_QUANTITY, TEST_INT, linkedList);
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
 
+        assertEquals(TEST_OBJECTS_QUANTITY * 3, linkedList.size());
+        linkedList.remove(TEST_INT);
+        assertEquals(TEST_OBJECTS_QUANTITY * 2, linkedList.size());
+        assertFalse(linkedList.contains(TEST_INT));
     }
 
     @Test
     public void testSize() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        assertEquals(0, linkedList.size());
 
+        linkedList.add(TEST_INT);
+        assertEquals(1, linkedList.size());
+
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
+        assertEquals(1 + TEST_OBJECTS_QUANTITY, linkedList.size());
     }
 
     @Test
     public void testGetIndexOfElementOnEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        linkedList.add(TEST_INT);
 
+        assertEquals(0, linkedList.getIndex(TEST_INT));
     }
 
     @Test
     public void testGetIndexOfElementOnNotEmptyList() {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        addRandomIntegerElementsToList(TEST_OBJECTS_QUANTITY, linkedList);
+        linkedList.add(TEST_INT);
 
+        assertEquals(TEST_OBJECTS_QUANTITY, linkedList.getIndex(TEST_INT));
     }
 }
